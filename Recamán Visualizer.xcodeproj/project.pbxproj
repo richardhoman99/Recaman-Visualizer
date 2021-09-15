@@ -11,6 +11,7 @@
 		48D19E3626F1A8430098428D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D19E3526F1A8430098428D /* Assets.xcassets */; };
 		48D19E3926F1A8430098428D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48D19E3726F1A8430098428D /* MainMenu.xib */; };
 		48D19E3C26F1A8430098428D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D19E3B26F1A8430098428D /* main.m */; };
+		48D19E4526F1A8B00098428D /* VisualizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D19E4426F1A8B00098428D /* VisualizerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,8 @@
 		48D19E3A26F1A8430098428D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48D19E3B26F1A8430098428D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		48D19E3D26F1A8430098428D /* Recama_n_Visualizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Recama_n_Visualizer.entitlements; sourceTree = "<group>"; };
+		48D19E4326F1A8B00098428D /* VisualizerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisualizerView.h; sourceTree = "<group>"; };
+		48D19E4426F1A8B00098428D /* VisualizerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisualizerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +59,8 @@
 			children = (
 				48D19E3226F1A8420098428D /* AppDelegate.h */,
 				48D19E3326F1A8420098428D /* AppDelegate.m */,
+				48D19E4326F1A8B00098428D /* VisualizerView.h */,
+				48D19E4426F1A8B00098428D /* VisualizerView.m */,
 				48D19E3526F1A8430098428D /* Assets.xcassets */,
 				48D19E3726F1A8430098428D /* MainMenu.xib */,
 				48D19E3A26F1A8430098428D /* Info.plist */,
@@ -135,6 +140,7 @@
 			files = (
 				48D19E3C26F1A8430098428D /* main.m in Sources */,
 				48D19E3426F1A8420098428D /* AppDelegate.m in Sources */,
+				48D19E4526F1A8B00098428D /* VisualizerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
