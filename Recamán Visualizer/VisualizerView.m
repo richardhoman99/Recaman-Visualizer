@@ -7,6 +7,8 @@
 
 #import "VisualizerView.h"
 
+int max(int, int);
+
 @interface VisualizerView ()
 
 @property (strong, nonatomic) NSMutableArray *sequence;
@@ -21,20 +23,21 @@
 {
     [super drawRect:dirtyRect];
 
+	[self setNthDegree:75];
 	NSAssert(nthDegree, @"nthDegree not defined");
-	[self setNthDegree:6];
+	NSLog(@"%@", sequence);
 }
 
 - (void)setNthDegree:(NSInteger )newDegree
 {
 	nthDegree = newDegree;
+	
 	// recalculate sequence
-
-	sequence = [[NSMutableArray alloc] initWithObjects:@0, @1, @3, nil];
-	for (int i = 3; i < newDegree; /* increments in block to reduce instruction */)
+	sequence = [[NSMutableArray alloc] initWithObjects:@0, nil];
+	for (int i = 1; i < newDegree; i++)
 	{
-		int current = [[sequence objectAtIndex:i] intValue];
-		NSNumber *new = [NSNumber numberWithInt:current-i];
+		int current = [[sequence objectAtIndex:i-1] intValue];
+		NSNumber *new = [NSNumber numberWithInt:max(current-i, 0)];
 		
 		if ([sequence containsObject:new]) // go forwards
 		{
@@ -49,3 +52,8 @@
 }
 
 @end
+
+int max(int a, int b)
+{
+	return a > b ? a : b;
+}
