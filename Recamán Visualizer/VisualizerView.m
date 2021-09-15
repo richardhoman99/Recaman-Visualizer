@@ -19,6 +19,7 @@ int max(int, int);
 @implementation VisualizerView
 @synthesize sequence;
 @synthesize degree;
+@synthesize rotation, zoom, translation;
 
 - (void)drawRect:(NSRect)dirtyRect
 {

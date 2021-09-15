@@ -18,6 +18,11 @@
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="NNl-pt-qZR" customClass="WindowController">
+            <connections>
+                <outlet property="window" destination="QvC-M9-y7g" id="WL4-pO-3hB"/>
+            </connections>
+        </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="Recamán Visualizer" id="1Xt-HY-uBw">
@@ -678,7 +683,7 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-86" y="-131"/>
+            <point key="canvasLocation" x="-17" y="-156"/>
         </menu>
         <window title="Recamán Visualizer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -689,7 +694,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
-            <point key="canvasLocation" x="73" y="292"/>
+            <connections>
+                <outlet property="delegate" destination="NNl-pt-qZR" id="cGJ-je-gxn"/>
+            </connections>
+            <point key="canvasLocation" x="124" y="332"/>
         </window>
     </objects>
 </document>

@@ -10,6 +10,9 @@
 @interface VisualizerView : NSView
 
 @property (nonatomic) NSInteger degree;
-@property (nonatomic) float zoomScale;
+
+@property (nonatomic) CGFloat rotation;
+@property (nonatomic) CGFloat zoom;
+@property (nonatomic) CGPoint translation;
 
 @end
