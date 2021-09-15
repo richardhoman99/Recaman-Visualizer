@@ -9,6 +9,9 @@
 #import "VisualizerView.h"
 
 @interface WindowController : NSWindowController
+{
+	BOOL mouseDownInView;
+}
 
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;

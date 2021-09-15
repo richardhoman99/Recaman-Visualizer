@@ -86,7 +86,7 @@ int max(int, int);
 	}
 	
 	NSAffineTransform *transform = [[NSAffineTransform alloc] init];
-	[transform translateXBy:10 yBy:10];
+	[transform translateXBy:self.translation.x yBy:self.translation.y];
 	[transform scaleBy:self.zoom];
 	[transform rotateByDegrees:45];
 	path = [transform transformBezierPath:path];
