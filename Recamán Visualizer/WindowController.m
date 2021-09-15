@@ -16,7 +16,27 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
+}
+
+- (IBAction)zoomIn:(id)sender
+{
+	[(VisualizerView *)self.window.contentView zoom:2.0];
+}
+
+- (IBAction)zoomOut:(id)sender
+{
+	[(VisualizerView *)self.window.contentView zoom:0.5];
+}
+
+- (IBAction)zoomActual:(id)sender
+{
+	[(VisualizerView *)self.window.contentView setZoom:3.0];
+}
+
+- (void)mouseDragged:(NSEvent *)event
+{
+	NSPoint translationPoint = NSMakePoint(-event.deltaX, event.deltaY);
+	[(VisualizerView *)self.window.contentView setTranslation:translationPoint];
 }
 
 @end

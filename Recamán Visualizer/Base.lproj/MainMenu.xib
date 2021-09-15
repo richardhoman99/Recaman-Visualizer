@@ -380,12 +380,14 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="5gT-KC-WSO"/>
-                                        <menuItem title="Bigger" tag="3" keyEquivalent="+" id="Ptp-SP-VEL">
+                                        <menuItem title="Bigger" tag="3" id="Ptp-SP-VEL">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="modifyFont:" target="YLy-65-1bz" id="Uc7-di-UnL"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Smaller" tag="4" keyEquivalent="-" id="i1d-Er-qST">
+                                        <menuItem title="Smaller" tag="4" id="i1d-Er-qST">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="modifyFont:" target="YLy-65-1bz" id="HcX-Lf-eNd"/>
                                             </connections>
@@ -617,25 +619,22 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="View" id="HyV-fh-RgO">
                         <items>
-                            <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                            <menuItem title="Actual Size" keyEquivalent="0" id="x33-i0-fke">
                                 <connections>
-                                    <action selector="toggleToolbarShown:" target="-1" id="BXY-wc-z0C"/>
+                                    <action selector="zoomActual:" target="-1" id="E0a-Lk-vMd"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Customize Toolbar…" id="1UK-8n-QPP">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Zoom In" keyEquivalent="+" id="7mp-ss-bYa">
                                 <connections>
-                                    <action selector="runToolbarCustomizationPalette:" target="-1" id="pQI-g3-MTW"/>
+                                    <action selector="zoomIn:" target="-1" id="4Bm-Oa-l31"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom Out" keyEquivalent="-" id="fGE-hL-SYK">
+                                <connections>
+                                    <action selector="zoomOut:" target="-1" id="cSg-ew-HRf"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="hB3-LF-h0Y"/>
-                            <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
-                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                <connections>
-                                    <action selector="toggleSidebar:" target="-1" id="iwa-gc-5KM"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
@@ -683,7 +682,7 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-17" y="-156"/>
+            <point key="canvasLocation" x="-75" y="-202"/>
         </menu>
         <window title="Recamán Visualizer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>

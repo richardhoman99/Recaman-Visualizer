@@ -10,4 +10,8 @@
 
 @interface WindowController : NSWindowController
 
+- (IBAction)zoomIn:(id)sender;
+- (IBAction)zoomOut:(id)sender;
+- (IBAction)zoomActual:(id)sender;
+
 @end

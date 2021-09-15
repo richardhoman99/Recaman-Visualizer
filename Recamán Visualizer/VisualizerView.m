@@ -20,14 +20,41 @@ int max(int, int);
 @synthesize sequence;
 @synthesize degree;
 @synthesize rotation, zoom, translation;
+@synthesize backgroundColor, lineColor;
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+	self = [super initWithCoder:coder];
+	if (self)
+	{
+		rotation = 0.0;
+		zoom = 3.0;
+		translation = NSMakePoint(0, 0);
+		[self setDegree:175];
+		[self setBackgroundColor:[NSColor whiteColor]];
+	}
+	return self;
+}
+
+- (id)initWithFrame:(NSRect)frameRect
+{
+	self = [super initWithFrame:frameRect];
+	if (self)
+	{
+		rotation = 0.0;
+		zoom = 3.0;
+		translation = NSMakePoint(0, 0);
+		[self setDegree:175];
+		[self setBackgroundColor:[NSColor whiteColor]];
+	}
+	return self;
+}
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
-
-	[self setDegree:37];
-	NSAssert(degree, @"degree not defined");
-	
+	[self.layer setBackgroundColor:self.backgroundColor.CGColor];
+		
 	int direction = -1;
 	NSBezierPath *path = [NSBezierPath new];
 	[path moveToPoint:NSMakePoint(0, 0)];
@@ -59,8 +86,8 @@ int max(int, int);
 	}
 	
 	NSAffineTransform *transform = [[NSAffineTransform alloc] init];
-	[transform translateXBy:10 yBy:50];
-	[transform scaleBy:15.0];
+	[transform translateXBy:10 yBy:10];
+	[transform scaleBy:self.zoom];
 	[transform rotateByDegrees:45];
 	path = [transform transformBezierPath:path];
 	[path stroke];
@@ -87,6 +114,34 @@ int max(int, int);
 			[sequence addObject:new];
 		}
 	}
+}
+
+- (void)zoom:(CGFloat)multiplier
+{
+	zoom *= multiplier;
+	[self setNeedsDisplay:YES];
+}
+
+- (void)setZoom:(CGFloat)newZoom
+{
+	zoom = newZoom;
+	[self setNeedsDisplay:YES];
+}
+
+- (void)setTranslation:(CGPoint)translation
+{
+	NSRect oldBounds = self.bounds;
+	NSRect newBounds = NSMakeRect(oldBounds.origin.x+translation.x,
+								  oldBounds.origin.y+translation.y,
+								  oldBounds.size.width,
+								  oldBounds.size.height);
+	[self setBounds:newBounds];
+}
+
+- (void)setBackgroundColor:(NSColor *)bgColor
+{
+	[self.layer setBackgroundColor:bgColor.CGColor];
+	[self setNeedsDisplay:YES];
 }
 
 @end
