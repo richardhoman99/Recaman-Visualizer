@@ -25,7 +25,30 @@ int max(int, int);
 
 	[self setNthDegree:75];
 	NSAssert(nthDegree, @"nthDegree not defined");
-	NSLog(@"%@", sequence);
+	
+	int direction = -1;
+//	double zoom = 5.0;
+	NSBezierPath *path = [NSBezierPath new];
+	[path moveToPoint:NSMakePoint(0, 0)];
+	
+	for (int i = 1; i < sequence.count; i++)
+	{
+		int prev, current, diff;
+		double radius;
+		NSPoint endpoint, control1, control2;
+		prev = [[sequence objectAtIndex:i-1] intValue];
+		current = [[sequence objectAtIndex:i] intValue];
+		diff = abs(current-prev);
+		radius = diff/2;
+		endpoint = NSMakePoint(current, 0);
+		control1 = NSMakePoint(prev, radius*direction);
+		control2 = NSMakePoint(current, radius*direction);
+		direction *= -1;
+		
+		[path curveToPoint:endpoint controlPoint1:control1 controlPoint2:control2];
+	}
+	[path closePath];
+	[path stroke];
 }
 
 - (void)setNthDegree:(NSInteger )newDegree
