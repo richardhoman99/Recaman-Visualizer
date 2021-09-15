@@ -9,6 +9,6 @@
 
 @interface VisualizerView : NSView
 
-@property (strong, nonatomic) NSNumber *nthDegree;
+@property (nonatomic) NSInteger nthDegree;
 
 @end

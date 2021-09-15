@@ -678,18 +678,18 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="68" y="-81"/>
+            <point key="canvasLocation" x="-86" y="-131"/>
         </menu>
         <window title="Recamán Visualizer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="546" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="800" height="600"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="546" height="360"/>
+            <view key="contentView" id="EiT-Mj-1SZ" customClass="VisualizerView">
+                <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
-            <point key="canvasLocation" x="-2" y="195"/>
+            <point key="canvasLocation" x="73" y="292"/>
         </window>
     </objects>
 </document>
