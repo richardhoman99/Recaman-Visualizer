@@ -7,10 +7,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface VisualizerView : NSView
 
-@end
+@property (strong, nonatomic) NSNumber *nthDegree;
 
-NS_ASSUME_NONNULL_END
+@end
