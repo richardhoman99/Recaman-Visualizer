@@ -10,6 +10,4 @@
 
 @interface WindowController : NSWindowController
 
-@property (strong, nonatomic) VisualizerView *view;
-
 @end
