@@ -9,6 +9,7 @@
 
 @interface VisualizerView : NSView
 
-@property (nonatomic) NSInteger nthDegree;
+@property (nonatomic) NSInteger degree;
+@property (nonatomic) float zoomScale;
 
 @end

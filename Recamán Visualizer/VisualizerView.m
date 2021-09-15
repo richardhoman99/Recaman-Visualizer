@@ -8,6 +8,7 @@
 #import "VisualizerView.h"
 
 int max(int, int);
+#define CURVE_CONSTANT 0.552284749831; // aids in giving the bezier control points their optimum position to mimic a circle
 
 @interface VisualizerView ()
 
@@ -17,47 +18,60 @@ int max(int, int);
 
 @implementation VisualizerView
 @synthesize sequence;
-@synthesize nthDegree;
+@synthesize degree;
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
 
-	[self setNthDegree:75];
-	NSAssert(nthDegree, @"nthDegree not defined");
+	[self setDegree:37];
+	NSAssert(degree, @"degree not defined");
 	
 	int direction = -1;
-//	double zoom = 5.0;
 	NSBezierPath *path = [NSBezierPath new];
 	[path moveToPoint:NSMakePoint(0, 0)];
 	
 	for (int i = 1; i < sequence.count; i++)
 	{
-		int prev, current, diff;
-		double radius;
-		NSPoint endpoint, control1, control2;
+		int prev, current;
+		double radiusX, radiusY, bezierControlX, bezierControlY;
+		NSPoint midpoint, endpoint, midcontrol1, midcontrol2, endcontrol1, endcontrol2;
+		
 		prev = [[sequence objectAtIndex:i-1] intValue];
 		current = [[sequence objectAtIndex:i] intValue];
-		diff = abs(current-prev);
-		radius = diff/2;
-		endpoint = NSMakePoint(current, 0);
-		control1 = NSMakePoint(prev, radius*direction);
-		control2 = NSMakePoint(current, radius*direction);
-		direction *= -1;
+		radiusX = (current-prev)/2.0;
+		radiusY = fabs(radiusX)*direction;
+		bezierControlX = radiusX*CURVE_CONSTANT;
+		bezierControlY = radiusY*CURVE_CONSTANT;
 		
-		[path curveToPoint:endpoint controlPoint1:control1 controlPoint2:control2];
+		midpoint = NSMakePoint(prev+radiusX, radiusY);
+		endpoint = NSMakePoint(current, 0);
+		
+		midcontrol1 = NSMakePoint(prev, bezierControlY);
+		midcontrol2 = NSMakePoint(prev+radiusX-bezierControlX, radiusY);
+		endcontrol1 = NSMakePoint(current-radiusX+bezierControlX, radiusY);
+		endcontrol2 = NSMakePoint(current, bezierControlY);
+		
+		[path curveToPoint:midpoint controlPoint1:midcontrol1 controlPoint2:midcontrol2];
+		[path curveToPoint:endpoint controlPoint1:endcontrol1 controlPoint2:endcontrol2];
+		direction *= -1;
 	}
-	[path closePath];
+	
+	NSAffineTransform *transform = [[NSAffineTransform alloc] init];
+	[transform translateXBy:10 yBy:50];
+	[transform scaleBy:15.0];
+	[transform rotateByDegrees:45];
+	path = [transform transformBezierPath:path];
 	[path stroke];
 }
 
-- (void)setNthDegree:(NSInteger )newDegree
+- (void)setDegree:(NSInteger)deg
 {
-	nthDegree = newDegree;
+	degree = deg;
 	
 	// recalculate sequence
 	sequence = [[NSMutableArray alloc] initWithObjects:@0, nil];
-	for (int i = 1; i < newDegree; i++)
+	for (int i = 1; i < deg; i++)
 	{
 		int current = [[sequence objectAtIndex:i-1] intValue];
 		NSNumber *new = [NSNumber numberWithInt:max(current-i, 0)];
