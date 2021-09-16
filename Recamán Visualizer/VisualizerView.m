@@ -7,17 +7,20 @@
 
 #import "VisualizerView.h"
 
+#define DEFAULT_DEGREE 30
+
 int max(int, int);
-#define CURVE_CONSTANT 0.552284749831; // aids in giving the bezier control points their optimum position to mimic a circle
 
 @interface VisualizerView ()
 
 @property (strong, nonatomic) NSMutableArray *sequence;
+@property (strong, nonatomic) CAShapeLayer *pathLayer;
 
 @end
 
 @implementation VisualizerView
 @synthesize sequence;
+@synthesize pathLayer;
 @synthesize degree;
 @synthesize rotation, zoom, translation;
 @synthesize backgroundColor, lineColor;
@@ -30,8 +33,11 @@ int max(int, int);
 		rotation = 0.0;
 		zoom = 3.0;
 		translation = NSMakePoint(0, 0);
-		[self setDegree:175];
 		[self setBackgroundColor:[NSColor whiteColor]];
+		[self setSequence:[NSMutableArray arrayWithObject:@0]];
+		[self setPathLayer:[CAShapeLayer new]];
+		
+		[self setDegree:DEFAULT_DEGREE];
 	}
 	return self;
 }
@@ -44,8 +50,11 @@ int max(int, int);
 		rotation = 0.0;
 		zoom = 3.0;
 		translation = NSMakePoint(0, 0);
-		[self setDegree:175];
 		[self setBackgroundColor:[NSColor whiteColor]];
+		[self setSequence:[NSMutableArray arrayWithObject:@0]];
+		[self setPathLayer:[CAShapeLayer new]];
+		
+		[self setDegree:DEFAULT_DEGREE];
 	}
 	return self;
 }
@@ -54,66 +63,55 @@ int max(int, int);
 {
     [super drawRect:dirtyRect];
 	[self.layer setBackgroundColor:self.backgroundColor.CGColor];
-		
-	int direction = -1;
-	NSBezierPath *path = [NSBezierPath new];
-	[path moveToPoint:NSMakePoint(0, 0)];
 	
-	for (int i = 1; i < sequence.count; i++)
-	{
-		int prev, current;
-		double radiusX, radiusY, bezierControlX, bezierControlY;
-		NSPoint midpoint, endpoint, midcontrol1, midcontrol2, endcontrol1, endcontrol2;
-		
-		prev = [[sequence objectAtIndex:i-1] intValue];
-		current = [[sequence objectAtIndex:i] intValue];
-		radiusX = (current-prev)/2.0;
-		radiusY = fabs(radiusX)*direction;
-		bezierControlX = radiusX*CURVE_CONSTANT;
-		bezierControlY = radiusY*CURVE_CONSTANT;
-		
-		midpoint = NSMakePoint(prev+radiusX, radiusY);
-		endpoint = NSMakePoint(current, 0);
-		
-		midcontrol1 = NSMakePoint(prev, bezierControlY);
-		midcontrol2 = NSMakePoint(prev+radiusX-bezierControlX, radiusY);
-		endcontrol1 = NSMakePoint(current-radiusX+bezierControlX, radiusY);
-		endcontrol2 = NSMakePoint(current, bezierControlY);
-		
-		[path curveToPoint:midpoint controlPoint1:midcontrol1 controlPoint2:midcontrol2];
-		[path curveToPoint:endpoint controlPoint1:endcontrol1 controlPoint2:endcontrol2];
-		direction *= -1;
-	}
+	[self.pathLayer setTransform:CATransform3DMakeScale(self.zoom, self.zoom, 1.0)];
+	[self.pathLayer setNeedsDisplayInRect:dirtyRect];
 	
-	NSAffineTransform *transform = [[NSAffineTransform alloc] init];
-	[transform translateXBy:self.translation.x yBy:self.translation.y];
-	[transform scaleBy:self.zoom];
-	[transform rotateByDegrees:45];
-	path = [transform transformBezierPath:path];
-	[path stroke];
+	[self.pathLayer setLineWidth:0.5];
+	[self.pathLayer setStrokeColor:[NSColor blackColor].CGColor];
+	[self.pathLayer setFillColor:NULL];
+	[self.layer addSublayer:self.pathLayer];
 }
 
 - (void)setDegree:(NSInteger)deg
 {
-	degree = deg;
-	
 	// recalculate sequence
-	sequence = [[NSMutableArray alloc] initWithObjects:@0, nil];
+	NSAssert(sequence, @"sequence is nil");
+	BOOL direction = NO;
+	CGMutablePathRef path = CGPathCreateMutable();
+	CGAffineTransform rotate = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI/4.0);
+	CGPathMoveToPoint(path, NULL, 0.0, 0.0);
+		
 	for (int i = 1; i < deg; i++)
 	{
 		int current = [[sequence objectAtIndex:i-1] intValue];
-		NSNumber *new = [NSNumber numberWithInt:max(current-i, 0)];
+		int next = max(current-i, 0);
+		NSNumber *nsnext = [NSNumber numberWithInt:next];
 		
-		if ([sequence containsObject:new]) // go forwards
+		double radius;
+		
+		if ([sequence containsObject:nsnext]) // go forwards
 		{
-			new = [NSNumber numberWithInt:current+i];
-			[sequence addObject:new];
+			next = current+i;
+			if (i >= degree)
+			{
+				nsnext = [NSNumber numberWithInt:next];
+				[sequence addObject:nsnext];
+			}
 		}
-		else // does not contain n, go back
-		{
-			[sequence addObject:new];
-		}
+		else if (i >= degree) // does not contain n, go back
+			[sequence addObject:nsnext];
+		
+		radius = (next-current)/2.0;
+		
+		CGPathAddArc(path, &rotate, current+radius, 0, radius, M_PI, 0.0, next < current ? direction : !direction);
+		
+		direction = !direction;
 	}
+	
+	[self.pathLayer setPath:path];
+	
+	degree = deg;
 }
 
 - (void)zoom:(CGFloat)multiplier
@@ -128,14 +126,15 @@ int max(int, int);
 	[self setNeedsDisplay:YES];
 }
 
-- (void)setTranslation:(CGPoint)translation
+- (void)setTranslation:(CGPoint)newTranslation
 {
 	NSRect oldBounds = self.bounds;
-	NSRect newBounds = NSMakeRect(oldBounds.origin.x+translation.x,
-								  oldBounds.origin.y+translation.y,
+	NSRect newBounds = NSMakeRect(oldBounds.origin.x+newTranslation.x,
+								  oldBounds.origin.y+newTranslation.y,
 								  oldBounds.size.width,
 								  oldBounds.size.height);
 	[self setBounds:newBounds];
+	translation = newTranslation;
 }
 
 - (void)setBackgroundColor:(NSColor *)bgColor
@@ -146,7 +145,7 @@ int max(int, int);
 
 @end
 
-int max(int a, int b)
+inline int max(int a, int b)
 {
 	return a > b ? a : b;
 }
