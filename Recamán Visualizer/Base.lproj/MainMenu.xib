@@ -684,6 +684,126 @@
             </items>
             <point key="canvasLocation" x="-75" y="-202"/>
         </menu>
+        <window title="Inspector" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" animationBehavior="utilityWindow" frameAutosaveName="" tabbingMode="disallowed" id="VON-XS-jER" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" nonactivatingPanel="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES" transient="YES" ignoresCycle="YES" fullScreenAuxiliary="YES" fullScreenDisallowsTiling="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="167" y="106" width="276" height="156"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
+            <view key="contentView" id="ujr-H2-263">
+                <rect key="frame" x="0.0" y="0.0" width="276" height="156"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JR6-Jb-1mN" userLabel="Length Label">
+                        <rect key="frame" x="18" y="118" width="46" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Length" id="a7R-U7-Set">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qmW-MC-NJk" userLabel="Length Text Field">
+                        <rect key="frame" x="140" y="115" width="96" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" title="20" drawsBackground="YES" id="EsK-kN-uNx">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xko-PA-Yzu" userLabel="Length Stepper">
+                        <rect key="frame" x="240" y="111" width="19" height="28"/>
+                        <stepperCell key="cell" continuous="YES" alignment="left" increment="8" minValue="1" maxValue="512" doubleValue="20" id="FYE-Yk-Kvw"/>
+                    </stepper>
+                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SA0-Rb-cXe" userLabel="Length Slider">
+                        <rect key="frame" x="18" y="85" width="240" height="28"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="512" doubleValue="20" tickMarkPosition="above" sliderType="linear" id="fka-mv-LiP"/>
+                    </slider>
+                    <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Twv-mi-5vo" userLabel="Lenght Seperator">
+                        <rect key="frame" x="12" y="81" width="252" height="5"/>
+                    </box>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gwj-IW-hQq" userLabel="Line Width Label">
+                        <rect key="frame" x="18" y="56" width="69" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Line Width" id="ajg-wK-y5I">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hwf-ba-hLj" userLabel="Line Width Text Field">
+                        <rect key="frame" x="140" y="53" width="96" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="0.5" drawsBackground="YES" id="40j-Fx-tgV">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Qsn-TQ-n9b"/>
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JNg-Ze-etA" userLabel="Line Width Stepper">
+                        <rect key="frame" x="240" y="50" width="19" height="28"/>
+                        <stepperCell key="cell" continuous="YES" alignment="left" increment="0.25" maxValue="2" id="8Mu-He-LME"/>
+                    </stepper>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yNb-ZT-Dms" userLabel="Line Color Label">
+                        <rect key="frame" x="18" y="24" width="30" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Line" id="Jbo-AJ-nwS">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fkx-tC-3v0" userLabel="Background Color Label">
+                        <rect key="frame" x="122" y="24" width="77" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Background" id="Cbx-GF-fsA">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="fNQ-uL-yJv" userLabel="Background Color Well">
+                        <rect key="frame" x="210" y="20" width="46" height="23"/>
+                        <color key="color" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </colorWell>
+                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="SXD-9E-3sc" userLabel="Line Color Well">
+                        <rect key="frame" x="59" y="20" width="46" height="23"/>
+                        <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </colorWell>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qmW-MC-NJk" firstAttribute="top" secondItem="ujr-H2-263" secondAttribute="top" constant="20" symbolic="YES" id="21Q-FM-cYW"/>
+                    <constraint firstAttribute="trailing" secondItem="JNg-Ze-etA" secondAttribute="trailing" constant="20" symbolic="YES" id="3FZ-gN-AdF"/>
+                    <constraint firstItem="fNQ-uL-yJv" firstAttribute="top" secondItem="hwf-ba-hLj" secondAttribute="bottom" constant="10" id="3N9-yU-5BX"/>
+                    <constraint firstItem="qmW-MC-NJk" firstAttribute="centerY" secondItem="JR6-Jb-1mN" secondAttribute="centerY" id="4KU-F8-jSB"/>
+                    <constraint firstItem="qmW-MC-NJk" firstAttribute="leading" secondItem="JR6-Jb-1mN" secondAttribute="trailing" constant="78" id="5Ci-W2-5DZ"/>
+                    <constraint firstAttribute="trailing" secondItem="Twv-mi-5vo" secondAttribute="trailing" constant="12" symbolic="YES" id="9iw-c7-g72"/>
+                    <constraint firstItem="fNQ-uL-yJv" firstAttribute="centerY" secondItem="fkx-tC-3v0" secondAttribute="centerY" id="BNi-0d-MUv"/>
+                    <constraint firstAttribute="trailing" secondItem="fNQ-uL-yJv" secondAttribute="trailing" constant="20" symbolic="YES" id="C3z-xK-MSh"/>
+                    <constraint firstAttribute="bottom" secondItem="fNQ-uL-yJv" secondAttribute="bottom" constant="20" symbolic="YES" id="ErM-hD-sUx"/>
+                    <constraint firstItem="JR6-Jb-1mN" firstAttribute="leading" secondItem="ujr-H2-263" secondAttribute="leading" constant="20" symbolic="YES" id="FIX-e7-K1y"/>
+                    <constraint firstItem="gwj-IW-hQq" firstAttribute="leading" secondItem="ujr-H2-263" secondAttribute="leading" constant="20" symbolic="YES" id="Flf-Wd-hNE"/>
+                    <constraint firstAttribute="trailing" secondItem="Xko-PA-Yzu" secondAttribute="trailing" constant="20" symbolic="YES" id="Gq9-u8-UX6"/>
+                    <constraint firstItem="yNb-ZT-Dms" firstAttribute="top" secondItem="gwj-IW-hQq" secondAttribute="bottom" constant="16" id="KyA-o7-UHm"/>
+                    <constraint firstAttribute="trailing" secondItem="SA0-Rb-cXe" secondAttribute="trailing" constant="20" symbolic="YES" id="La6-Jc-gGt"/>
+                    <constraint firstItem="fkx-tC-3v0" firstAttribute="leading" secondItem="ujr-H2-263" secondAttribute="leading" constant="124" id="Nlj-I1-g5l"/>
+                    <constraint firstAttribute="bottom" secondItem="SXD-9E-3sc" secondAttribute="bottom" constant="20" symbolic="YES" id="Qsj-Pu-a6C"/>
+                    <constraint firstItem="hwf-ba-hLj" firstAttribute="leading" secondItem="gwj-IW-hQq" secondAttribute="trailing" constant="55" id="Sqs-is-nOf"/>
+                    <constraint firstItem="yNb-ZT-Dms" firstAttribute="leading" secondItem="ujr-H2-263" secondAttribute="leading" constant="20" symbolic="YES" id="TmE-yO-KQK"/>
+                    <constraint firstItem="Twv-mi-5vo" firstAttribute="top" secondItem="SA0-Rb-cXe" secondAttribute="bottom" constant="7" id="Xfs-b5-bBG"/>
+                    <constraint firstItem="Xko-PA-Yzu" firstAttribute="leading" secondItem="qmW-MC-NJk" secondAttribute="trailing" constant="7" id="Zdr-3d-zp5"/>
+                    <constraint firstItem="fNQ-uL-yJv" firstAttribute="leading" secondItem="fkx-tC-3v0" secondAttribute="trailing" constant="13" id="b0V-P1-xes"/>
+                    <constraint firstItem="SXD-9E-3sc" firstAttribute="top" secondItem="gwj-IW-hQq" secondAttribute="bottom" constant="13" id="bKX-cv-Si2"/>
+                    <constraint firstItem="SXD-9E-3sc" firstAttribute="leading" secondItem="yNb-ZT-Dms" secondAttribute="trailing" constant="13" id="cDa-ES-5uA"/>
+                    <constraint firstItem="SA0-Rb-cXe" firstAttribute="top" secondItem="qmW-MC-NJk" secondAttribute="bottom" constant="4" id="cH8-Aw-uM7"/>
+                    <constraint firstItem="Xko-PA-Yzu" firstAttribute="top" secondItem="ujr-H2-263" secondAttribute="top" constant="20" symbolic="YES" id="cIC-we-HSR"/>
+                    <constraint firstItem="JNg-Ze-etA" firstAttribute="top" secondItem="Twv-mi-5vo" secondAttribute="bottom" constant="8" symbolic="YES" id="inx-xd-7Zu"/>
+                    <constraint firstItem="SA0-Rb-cXe" firstAttribute="leading" secondItem="ujr-H2-263" secondAttribute="leading" constant="20" symbolic="YES" id="o07-g5-cdO"/>
+                    <constraint firstItem="hwf-ba-hLj" firstAttribute="top" secondItem="Twv-mi-5vo" secondAttribute="bottom" constant="9" id="qs6-FP-Pwt"/>
+                    <constraint firstItem="JNg-Ze-etA" firstAttribute="leading" secondItem="hwf-ba-hLj" secondAttribute="trailing" constant="7" id="saC-my-Fk7"/>
+                    <constraint firstItem="Twv-mi-5vo" firstAttribute="leading" secondItem="ujr-H2-263" secondAttribute="leading" constant="12" symbolic="YES" id="wD1-Gu-Qqw"/>
+                    <constraint firstItem="hwf-ba-hLj" firstAttribute="centerY" secondItem="gwj-IW-hQq" secondAttribute="centerY" id="ybP-gq-SEK"/>
+                    <constraint firstAttribute="trailing" secondItem="SXD-9E-3sc" secondAttribute="trailing" constant="171" id="yfI-dn-An5"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="852" y="43"/>
+        </window>
         <window title="Recamán Visualizer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="none" tabbingMode="disallowed" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES" managed="YES" participatesInCycle="YES" fullScreenPrimary="YES" fullScreenDisallowsTiling="YES"/>
@@ -697,7 +817,7 @@
             <connections>
                 <outlet property="delegate" destination="NNl-pt-qZR" id="cGJ-je-gxn"/>
             </connections>
-            <point key="canvasLocation" x="124" y="332"/>
+            <point key="canvasLocation" x="414" y="150"/>
         </window>
     </objects>
 </document>
