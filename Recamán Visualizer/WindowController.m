@@ -40,26 +40,6 @@
 	[(VisualizerView *)self.window.contentView setZoom:3.0];
 }
 
-- (void)mouseDown:(NSEvent *)event
-{
-	if ([[(VisualizerView *)self.window.contentView hitTest:event.locationInWindow] isEqualTo:(VisualizerView *)self.window.contentView])
-		mouseDownInView = YES;
-}
-
-- (void)mouseUp:(NSEvent *)event
-{
-	mouseDownInView = NO;
-}
-
-- (void)mouseDragged:(NSEvent *)event
-{
-	if (mouseDownInView)
-	{
-		NSPoint translationPoint = NSMakePoint(-event.deltaX, event.deltaY);
-		[(VisualizerView *)self.window.contentView setTranslation:translationPoint];
-	}
-}
-
 - (void)setDegreeLength:(NSNumber *)dl
 {
 	degreeLength = dl;

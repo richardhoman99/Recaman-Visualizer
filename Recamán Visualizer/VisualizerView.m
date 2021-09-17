@@ -24,7 +24,7 @@ int max(int, int);
 @synthesize sequence;
 @synthesize pathLayer;
 @synthesize degree;
-@synthesize rotation, zoom, translation;
+@synthesize rotation, zoom;
 @synthesize backgroundColor, lineColor, lineWidth;
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -46,7 +46,6 @@ int max(int, int);
 	[self setWantsLayer:YES];
 	rotation = 0.0;
 	zoom = 3.0;
-	translation = NSMakePoint(0, 0);
 	
 	[self setBackgroundColor:[NSColor whiteColor].CGColor];
 	[self setLineColor:[NSColor blackColor].CGColor];
@@ -59,6 +58,12 @@ int max(int, int);
 	[self.pathLayer setFillColor:NULL];
 		
 	[self setDegree:DEFAULT_DEGREE];
+}
+
+- (void)mouseDragged:(NSEvent *)event
+{
+	NSPoint delta = NSMakePoint(-event.deltaX, event.deltaY);
+	[self setTranslation:delta];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -123,15 +128,14 @@ int max(int, int);
 	[self.pathLayer setTransform:CATransform3DMakeScale(self.zoom, self.zoom, 1.0)];
 }
 
-- (void)setTranslation:(CGPoint)newTranslation
+- (void)setTranslation:(CGPoint)delta
 {
 	NSRect oldBounds = self.bounds;
-	NSRect newBounds = NSMakeRect(oldBounds.origin.x+newTranslation.x,
-								  oldBounds.origin.y+newTranslation.y,
+	NSRect newBounds = NSMakeRect(oldBounds.origin.x+delta.x,
+								  oldBounds.origin.y+delta.y,
 								  oldBounds.size.width,
 								  oldBounds.size.height);
 	[self setBounds:newBounds];
-	translation = newTranslation;
 }
 
 - (void)setBackgroundColor:(CGColorRef)bgcolor

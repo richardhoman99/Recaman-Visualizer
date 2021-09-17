@@ -14,12 +14,12 @@
 
 @property (nonatomic) CGFloat rotation;
 @property (nonatomic) CGFloat zoom; // setZoom: will change zoom to the absolute value, zoom: will change zoom by given factor
-@property (nonatomic) CGPoint translation;
 
 @property (nonatomic) CGColorRef backgroundColor;
 @property (nonatomic) CGColorRef lineColor;
 @property (nonatomic) CGFloat lineWidth;
 
 - (void)zoom:(CGFloat)multiplier;
+- (void)setTranslation:(CGPoint)delta;
 
 @end
