@@ -21,6 +21,8 @@
 	NSUserDefaults *sharedUserDefaults = [NSUserDefaults standardUserDefaults];
 	[self bind:@"degreeLength" toObject:sharedUserDefaults withKeyPath:@"length" options:nil];
 	[self bind:@"lineWidth" toObject:sharedUserDefaults withKeyPath:@"lineWidth" options:nil];
+	[self setBackgroundColor:[NSColor whiteColor]];
+	[self setLineColor:[NSColor blackColor]];
 }
 
 - (IBAction)zoomIn:(id)sender
