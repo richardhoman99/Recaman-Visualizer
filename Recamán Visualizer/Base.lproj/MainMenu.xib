@@ -20,8 +20,6 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="NNl-pt-qZR" customClass="WindowController">
             <connections>
-                <outlet property="backgroundColorWell" destination="fNQ-uL-yJv" id="LLN-c3-2Pl"/>
-                <outlet property="lineColorWell" destination="SXD-9E-3sc" id="0un-rz-ebv"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="BQu-Oi-xbh"/>
             </connections>
         </customObject>
