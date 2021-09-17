@@ -137,7 +137,7 @@ int max(int, int);
 - (void)setBackgroundColor:(CGColorRef)bgcolor
 {
 	backgroundColor = bgcolor;
-	[self.pathLayer setBackgroundColor:bgcolor];
+	[self.layer setBackgroundColor:bgcolor];
 	[self setNeedsDisplay:YES];
 }
 
@@ -146,6 +146,12 @@ int max(int, int);
 	lineColor = lColor;
 	[self.pathLayer setStrokeColor:lineColor];
 	[self setNeedsDisplay:YES];
+}
+
+- (void)setLineWidth:(CGFloat)lw
+{
+	lineWidth = lw;
+	[self.pathLayer setLineWidth:lineWidth];
 }
 
 @end

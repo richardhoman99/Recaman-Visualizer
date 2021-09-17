@@ -753,7 +753,7 @@
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JNg-Ze-etA" userLabel="Line Width Stepper">
                         <rect key="frame" x="240" y="50" width="19" height="28"/>
-                        <stepperCell key="cell" continuous="YES" alignment="left" increment="0.25" maxValue="2" id="8Mu-He-LME"/>
+                        <stepperCell key="cell" continuous="YES" alignment="left" increment="0.050000000000000003" minValue="0.01" maxValue="2" doubleValue="0.5" id="8Mu-He-LME"/>
                         <connections>
                             <binding destination="SKN-B0-IxJ" name="value" keyPath="values.lineWidth" id="NVL-EK-s2e"/>
                         </connections>
@@ -774,14 +774,14 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <colorWell continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNQ-uL-yJv" userLabel="Background Color Well">
+                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="fNQ-uL-yJv" userLabel="Background Color Well">
                         <rect key="frame" x="210" y="20" width="46" height="23"/>
                         <color key="color" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <binding destination="NNl-pt-qZR" name="value" keyPath="self.backgroundColor" id="6Zy-HX-ktf"/>
                         </connections>
                     </colorWell>
-                    <colorWell continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXD-9E-3sc" userLabel="Line Color Well">
+                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="SXD-9E-3sc" userLabel="Line Color Well">
                         <rect key="frame" x="59" y="20" width="46" height="23"/>
                         <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -824,7 +824,7 @@
                     <constraint firstAttribute="trailing" secondItem="SXD-9E-3sc" secondAttribute="trailing" constant="171" id="yfI-dn-An5"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="925" y="11"/>
+            <point key="canvasLocation" x="985" y="-37"/>
         </window>
         <window title="Recamán Visualizer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="none" tabbingMode="disallowed" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
