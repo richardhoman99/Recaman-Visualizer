@@ -7,6 +7,9 @@
 
 #import "WindowController.h"
 
+#define ZOOM_IN 2.0
+#define ZOOM_OUT 0.5
+
 @interface WindowController ()
 
 @end
@@ -28,17 +31,17 @@
 
 - (IBAction)zoomIn:(id)sender
 {
-	[self.visulizerView zoom:2.0];
+	[self.visulizerView zoom:ZOOM_IN];
 }
 
 - (IBAction)zoomOut:(id)sender
 {
-	[self.visulizerView zoom:0.5];
+	[self.visulizerView zoom:ZOOM_OUT];
 }
 
-- (IBAction)zoomActual:(id)sender
+- (IBAction)zoomNormal:(id)sender
 {
-	[self.visulizerView setZoom:3.0];
+	[self.visulizerView setZoom:NORMAL_ZOOM];
 }
 
 - (void)setDegreeLength:(NSNumber *)dl

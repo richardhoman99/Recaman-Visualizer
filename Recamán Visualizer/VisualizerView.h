@@ -8,6 +8,8 @@
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
 
+#define NORMAL_ZOOM 3.0
+
 @interface VisualizerView : NSView
 {
 	BOOL closeHand;

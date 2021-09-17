@@ -609,9 +609,9 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="View" id="HyV-fh-RgO">
                         <items>
-                            <menuItem title="Actual Size" keyEquivalent="0" id="x33-i0-fke">
+                            <menuItem title="Normal Size" keyEquivalent="0" id="x33-i0-fke">
                                 <connections>
-                                    <action selector="zoomActual:" target="-1" id="E0a-Lk-vMd"/>
+                                    <action selector="zoomNormal:" target="-1" id="1je-Kz-N5t"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Zoom In" keyEquivalent="+" id="7mp-ss-bYa">

@@ -22,6 +22,6 @@
 
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
-- (IBAction)zoomActual:(id)sender;
+- (IBAction)zoomNormal:(id)sender;
 
 @end

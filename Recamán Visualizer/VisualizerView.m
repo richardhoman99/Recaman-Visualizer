@@ -17,6 +17,7 @@ int max(int, int);
 @property (strong, nonatomic) CAShapeLayer *pathLayer;
 
 - (void)commonInit;
+- (CGPoint)viewCenter;
 
 @end
 
@@ -56,9 +57,10 @@ int max(int, int);
 	[self.pathLayer setLineWidth:self.lineWidth];
 	[self.pathLayer setStrokeColor:self.lineColor];
 	[self.pathLayer setFillColor:NULL];
+	[self.pathLayer setPosition:[self viewCenter]];
 	
 	[self setRotation:0.0];
-	[self setZoom:3.0];
+	[self setZoom:NORMAL_ZOOM];
 		
 	[self setDegree:DEFAULT_DEGREE];
 }
@@ -175,6 +177,11 @@ int max(int, int);
 {
 	lineWidth = lw;
 	[self.pathLayer setLineWidth:lineWidth];
+}
+
+- (CGPoint)viewCenter
+{
+	return CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0);
 }
 
 @end
