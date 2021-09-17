@@ -9,22 +9,20 @@
 
 @interface AppDelegate ()
 
-@property (strong) IBOutlet NSWindow *window;
-
 @end
 
 @implementation AppDelegate
-@synthesize windowController, window;
+@synthesize windowController;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	[self setWindowController:[[WindowController alloc] initWithWindow:window]];
+	[self setWindowController:[[WindowController alloc] initWithWindowNibName:@"Window"]];
 
 	NSUserDefaults *sharedUserDefaults = [NSUserDefaults standardUserDefaults];
 	[sharedUserDefaults registerDefaults:@{@"length":			@20,
 										   @"lineWidth":		@0.5,
 	}];
-			
+	
 	[self.windowController showWindow:self];
 }
 

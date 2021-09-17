@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSColor *lineColor;
 @property (strong, nonatomic) NSColor *backgroundColor;
 
+@property (strong, nonatomic) IBOutlet VisualizerView *visulizerView;
+
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
 - (IBAction)zoomActual:(id)sender;

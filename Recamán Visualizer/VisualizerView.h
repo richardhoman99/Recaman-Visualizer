@@ -9,6 +9,9 @@
 #import <Quartz/Quartz.h>
 
 @interface VisualizerView : NSView
+{
+	BOOL closeHand;
+}
 
 @property (nonatomic) NSInteger degree;
 

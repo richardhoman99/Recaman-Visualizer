@@ -44,20 +44,39 @@ int max(int, int);
 - (void)commonInit
 {
 	[self setWantsLayer:YES];
-	rotation = 0.0;
-	zoom = 3.0;
-	
+	[self.layer setBounds:self.bounds];
+	closeHand = NO;
+		
 	[self setBackgroundColor:[NSColor whiteColor].CGColor];
 	[self setLineColor:[NSColor blackColor].CGColor];
 	[self setLineWidth:0.5];
 	[self setSequence:[NSMutableArray arrayWithObject:@0]];
-	
+		
 	[self setPathLayer:[CAShapeLayer new]];
 	[self.pathLayer setLineWidth:self.lineWidth];
 	[self.pathLayer setStrokeColor:self.lineColor];
 	[self.pathLayer setFillColor:NULL];
+	
+	[self setRotation:0.0];
+	[self setZoom:3.0];
 		
 	[self setDegree:DEFAULT_DEGREE];
+}
+
+- (void)resetCursorRects
+{
+	[super resetCursorRects];
+	[self addCursorRect:self.frame cursor:[NSCursor openHandCursor]];
+}
+
+- (void)mouseDown:(NSEvent *)event
+{
+	[[NSCursor closedHandCursor] push];
+}
+
+- (void)mouseUp:(NSEvent *)event
+{
+	[[NSCursor closedHandCursor] pop];
 }
 
 - (void)mouseDragged:(NSEvent *)event
@@ -112,6 +131,7 @@ int max(int, int);
 	}
 	
 	[self.pathLayer setPath:path];
+	[self.pathLayer setBounds:CGRectMake(0, 0, deg, deg)];
 	
 	degree = deg;
 }
@@ -130,12 +150,11 @@ int max(int, int);
 
 - (void)setTranslation:(CGPoint)delta
 {
-	NSRect oldBounds = self.bounds;
-	NSRect newBounds = NSMakeRect(oldBounds.origin.x+delta.x,
-								  oldBounds.origin.y+delta.y,
-								  oldBounds.size.width,
-								  oldBounds.size.height);
-	[self setBounds:newBounds];
+	[CATransaction begin];
+	[CATransaction setDisableActions:YES];
+	CGPoint point = CGPointMake(self.pathLayer.position.x-delta.x, self.pathLayer.position.y-delta.y);
+	[self.pathLayer setPosition:point];
+	[CATransaction commit];
 }
 
 - (void)setBackgroundColor:(CGColorRef)bgcolor
