@@ -11,9 +11,6 @@
 #define NORMAL_ZOOM 3.0
 
 @interface VisualizerView : NSView
-{
-	BOOL closeHand;
-}
 
 @property (nonatomic) NSInteger degree;
 

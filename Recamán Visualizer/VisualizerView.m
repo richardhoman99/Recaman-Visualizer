@@ -46,7 +46,6 @@ int max(int, int);
 {
 	[self setWantsLayer:YES];
 	[self.layer setBounds:self.bounds];
-	closeHand = NO;
 		
 	[self setBackgroundColor:[NSColor whiteColor].CGColor];
 	[self setLineColor:[NSColor blackColor].CGColor];
