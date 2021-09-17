@@ -16,6 +16,8 @@ int max(int, int);
 @property (strong, nonatomic) NSMutableArray *sequence;
 @property (strong, nonatomic) CAShapeLayer *pathLayer;
 
+- (void)commonInit;
+
 @end
 
 @implementation VisualizerView
@@ -23,53 +25,46 @@ int max(int, int);
 @synthesize pathLayer;
 @synthesize degree;
 @synthesize rotation, zoom, translation;
-@synthesize backgroundColor, lineColor;
+@synthesize backgroundColor, lineColor, lineWidth;
 
 - (id)initWithCoder:(NSCoder *)coder
 {
 	self = [super initWithCoder:coder];
-	if (self)
-	{
-		rotation = 0.0;
-		zoom = 3.0;
-		translation = NSMakePoint(0, 0);
-		[self setBackgroundColor:[NSColor whiteColor]];
-		[self setSequence:[NSMutableArray arrayWithObject:@0]];
-		[self setPathLayer:[CAShapeLayer new]];
-		
-		[self setDegree:DEFAULT_DEGREE];
-	}
+	if (self) [self commonInit];
 	return self;
 }
 
 - (id)initWithFrame:(NSRect)frameRect
 {
 	self = [super initWithFrame:frameRect];
-	if (self)
-	{
-		rotation = 0.0;
-		zoom = 3.0;
-		translation = NSMakePoint(0, 0);
-		[self setBackgroundColor:[NSColor whiteColor]];
-		[self setSequence:[NSMutableArray arrayWithObject:@0]];
-		[self setPathLayer:[CAShapeLayer new]];
-		
-		[self setDegree:DEFAULT_DEGREE];
-	}
+	if (self) [self commonInit];
 	return self;
+}
+
+- (void)commonInit
+{
+	[self setWantsLayer:YES];
+	rotation = 0.0;
+	zoom = 3.0;
+	translation = NSMakePoint(0, 0);
+	
+	[self setBackgroundColor:[NSColor whiteColor].CGColor];
+	[self setLineColor:[NSColor blackColor].CGColor];
+	[self setLineWidth:0.5];
+	[self setSequence:[NSMutableArray arrayWithObject:@0]];
+	
+	[self setPathLayer:[CAShapeLayer new]];
+	[self.pathLayer setLineWidth:self.lineWidth];
+	[self.pathLayer setStrokeColor:self.lineColor];
+	[self.pathLayer setFillColor:NULL];
+		
+	[self setDegree:DEFAULT_DEGREE];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
-	[self.layer setBackgroundColor:self.backgroundColor.CGColor];
 	
-	[self.pathLayer setTransform:CATransform3DMakeScale(self.zoom, self.zoom, 1.0)];
-	[self.pathLayer setNeedsDisplayInRect:dirtyRect];
-	
-	[self.pathLayer setLineWidth:0.5];
-	[self.pathLayer setStrokeColor:[NSColor blackColor].CGColor];
-	[self.pathLayer setFillColor:NULL];
 	[self.layer addSublayer:self.pathLayer];
 }
 
@@ -77,7 +72,7 @@ int max(int, int);
 {
 	// recalculate sequence
 	NSAssert(sequence, @"sequence is nil");
-	BOOL direction = NO;
+	BOOL direction = YES;
 	CGMutablePathRef path = CGPathCreateMutable();
 	CGAffineTransform rotate = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI/4.0);
 	CGPathMoveToPoint(path, NULL, 0.0, 0.0);
@@ -85,22 +80,24 @@ int max(int, int);
 	for (int i = 1; i < deg; i++)
 	{
 		int current = [[sequence objectAtIndex:i-1] intValue];
-		int next = max(current-i, 0);
-		NSNumber *nsnext = [NSNumber numberWithInt:next];
-		
+		int next;
 		double radius;
-		
-		if ([sequence containsObject:nsnext]) // go forwards
+		if (i >= [sequence count])
 		{
-			next = current+i;
-			if (i >= degree)
+			next = max(current-i, 0);
+			NSNumber *nsnext = [NSNumber numberWithInt:next];
+			if ([sequence containsObject:nsnext]) // go forwards
 			{
-				nsnext = [NSNumber numberWithInt:next];
-				[sequence addObject:nsnext];
+				next = current+i;
+				if (i >= degree)
+				{
+					nsnext = [NSNumber numberWithInt:next];
+					[sequence addObject:nsnext];
+				}
 			}
-		}
-		else if (i >= degree) // does not contain n, go back
-			[sequence addObject:nsnext];
+			else if (i >= degree) // does not contain n, go back
+				[sequence addObject:nsnext];
+		} else next = [[sequence objectAtIndex:i] intValue];
 		
 		radius = (next-current)/2.0;
 		
@@ -117,13 +114,13 @@ int max(int, int);
 - (void)zoom:(CGFloat)multiplier
 {
 	zoom *= multiplier;
-	[self setNeedsDisplay:YES];
+	[self.pathLayer setTransform:CATransform3DMakeScale(self.zoom, self.zoom, 1.0)];
 }
 
 - (void)setZoom:(CGFloat)newZoom
 {
 	zoom = newZoom;
-	[self setNeedsDisplay:YES];
+	[self.pathLayer setTransform:CATransform3DMakeScale(self.zoom, self.zoom, 1.0)];
 }
 
 - (void)setTranslation:(CGPoint)newTranslation
@@ -137,9 +134,17 @@ int max(int, int);
 	translation = newTranslation;
 }
 
-- (void)setBackgroundColor:(NSColor *)bgColor
+- (void)setBackgroundColor:(CGColorRef)bgcolor
 {
-	[self.layer setBackgroundColor:bgColor.CGColor];
+	backgroundColor = bgcolor;
+	[self.pathLayer setBackgroundColor:bgcolor];
+	[self setNeedsDisplay:YES];
+}
+
+- (void)setLineColor:(CGColorRef)lColor
+{
+	lineColor = lColor;
+	[self.pathLayer setStrokeColor:lineColor];
 	[self setNeedsDisplay:YES];
 }
 

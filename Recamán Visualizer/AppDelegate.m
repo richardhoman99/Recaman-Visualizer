@@ -14,13 +14,17 @@
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	// Insert code here to initialize your application
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+	NSUserDefaults *sharedUserDefaults = [NSUserDefaults standardUserDefaults];
+	[sharedUserDefaults registerDefaults:@{@"length":			@20,
+										   @"lineWidth":		@0.5,}];
 }
 
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-	// Insert code here to tear down your application
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
+
 }
 
 

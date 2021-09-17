@@ -12,10 +12,17 @@
 @end
 
 @implementation WindowController
+@synthesize degreeLength;
+@synthesize lineWidth;
+@synthesize lineColor, backgroundColor;
 
-- (void)windowDidLoad
+- (void)awakeFromNib
 {
-    [super windowDidLoad];
+	NSUserDefaults *sharedUserDefaults = [NSUserDefaults standardUserDefaults];
+	[self bind:@"degreeLength" toObject:sharedUserDefaults withKeyPath:@"length" options:nil];
+	[self bind:@"lineWidth" toObject:sharedUserDefaults withKeyPath:@"lineWidth" options:nil];
+	[self setLineColor:[NSColor blackColor]];
+	[self setBackgroundColor:[NSColor whiteColor]];
 }
 
 - (IBAction)zoomIn:(id)sender
@@ -51,6 +58,30 @@
 		NSPoint translationPoint = NSMakePoint(-event.deltaX, event.deltaY);
 		[(VisualizerView *)self.window.contentView setTranslation:translationPoint];
 	}
+}
+
+- (void)setDegreeLength:(NSNumber *)dl
+{
+	degreeLength = dl;
+	[(VisualizerView *)self.window.contentView setDegree:degreeLength.intValue];
+}
+
+- (void)setLineWidth:(NSNumber *)lw
+{
+	lineWidth = lw;
+	[(VisualizerView *)self.window.contentView setLineWidth:lineWidth.doubleValue];
+}
+
+- (void)setLineColor:(NSColor *)lc
+{
+	lineColor = lc;
+	[(VisualizerView *)self.window.contentView setLineColor:lineColor.CGColor];
+}
+
+- (void)setBackgroundColor:(NSColor *)bc
+{
+	backgroundColor = bc;
+	[(VisualizerView *)self.window.contentView setBackgroundColor:backgroundColor.CGColor];
 }
 
 @end

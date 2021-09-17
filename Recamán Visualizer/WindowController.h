@@ -13,6 +13,11 @@
 	BOOL mouseDownInView;
 }
 
+@property (strong, nonatomic) NSNumber *degreeLength;
+@property (strong, nonatomic) NSNumber *lineWidth;
+@property (strong, nonatomic) NSColor *lineColor;
+@property (strong, nonatomic) NSColor *backgroundColor;
+
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
 - (IBAction)zoomActual:(id)sender;

@@ -16,8 +16,9 @@
 @property (nonatomic) CGFloat zoom; // setZoom: will change zoom to the absolute value, zoom: will change zoom by given factor
 @property (nonatomic) CGPoint translation;
 
-@property (strong, nonatomic) NSColor *backgroundColor;
-@property (strong, nonatomic) NSColor *lineColor;
+@property (nonatomic) CGColorRef backgroundColor;
+@property (nonatomic) CGColorRef lineColor;
+@property (nonatomic) CGFloat lineWidth;
 
 - (void)zoom:(CGFloat)multiplier;
 

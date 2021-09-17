@@ -705,18 +705,28 @@
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qmW-MC-NJk" userLabel="Length Text Field">
                         <rect key="frame" x="140" y="115" width="96" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" title="20" drawsBackground="YES" id="EsK-kN-uNx">
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" negativeFormat="-#,##0" numberStyle="decimal" allowsFloats="NO" formatWidth="-1" roundingMode="floor" minimumIntegerDigits="1" maximumIntegerDigits="65536" decimalSeparator="." groupingSeparator="," id="r1r-sG-lyP"/>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <binding destination="SKN-B0-IxJ" name="value" keyPath="values.length" id="eaC-ee-5xX"/>
+                        </connections>
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xko-PA-Yzu" userLabel="Length Stepper">
                         <rect key="frame" x="240" y="111" width="19" height="28"/>
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="8" minValue="1" maxValue="512" doubleValue="20" id="FYE-Yk-Kvw"/>
+                        <connections>
+                            <binding destination="SKN-B0-IxJ" name="value" keyPath="values.length" id="o4s-J1-4UW"/>
+                        </connections>
                     </stepper>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SA0-Rb-cXe" userLabel="Length Slider">
                         <rect key="frame" x="18" y="85" width="240" height="28"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="512" doubleValue="20" tickMarkPosition="above" sliderType="linear" id="fka-mv-LiP"/>
+                        <connections>
+                            <binding destination="SKN-B0-IxJ" name="value" keyPath="values.length" id="tSv-Bh-J6n"/>
+                        </connections>
                     </slider>
                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Twv-mi-5vo" userLabel="Lenght Seperator">
                         <rect key="frame" x="12" y="81" width="252" height="5"/>
@@ -737,10 +747,16 @@
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <binding destination="SKN-B0-IxJ" name="value" keyPath="values.lineWidth" id="UNs-Sy-m9p"/>
+                        </connections>
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JNg-Ze-etA" userLabel="Line Width Stepper">
                         <rect key="frame" x="240" y="50" width="19" height="28"/>
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.25" maxValue="2" id="8Mu-He-LME"/>
+                        <connections>
+                            <binding destination="SKN-B0-IxJ" name="value" keyPath="values.lineWidth" id="NVL-EK-s2e"/>
+                        </connections>
                     </stepper>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yNb-ZT-Dms" userLabel="Line Color Label">
                         <rect key="frame" x="18" y="24" width="30" height="16"/>
@@ -758,13 +774,19 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="fNQ-uL-yJv" userLabel="Background Color Well">
+                    <colorWell continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNQ-uL-yJv" userLabel="Background Color Well">
                         <rect key="frame" x="210" y="20" width="46" height="23"/>
                         <color key="color" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <binding destination="NNl-pt-qZR" name="value" keyPath="self.backgroundColor" id="6Zy-HX-ktf"/>
+                        </connections>
                     </colorWell>
-                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="SXD-9E-3sc" userLabel="Line Color Well">
+                    <colorWell continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXD-9E-3sc" userLabel="Line Color Well">
                         <rect key="frame" x="59" y="20" width="46" height="23"/>
                         <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <binding destination="NNl-pt-qZR" name="value" keyPath="self.lineColor" id="zgz-YZ-Psf"/>
+                        </connections>
                     </colorWell>
                 </subviews>
                 <constraints>
@@ -802,7 +824,7 @@
                     <constraint firstAttribute="trailing" secondItem="SXD-9E-3sc" secondAttribute="trailing" constant="171" id="yfI-dn-An5"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="852" y="43"/>
+            <point key="canvasLocation" x="925" y="11"/>
         </window>
         <window title="Recamán Visualizer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="none" tabbingMode="disallowed" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -819,5 +841,6 @@
             </connections>
             <point key="canvasLocation" x="414" y="150"/>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="SKN-B0-IxJ"/>
     </objects>
 </document>
