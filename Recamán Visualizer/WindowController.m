@@ -6,6 +6,7 @@
 //
 
 #import "WindowController.h"
+#import "AppDelegate.h"
 
 #define ZOOM_IN 2.0
 #define ZOOM_OUT 0.5
@@ -19,6 +20,7 @@
 @synthesize lineWidth;
 @synthesize lineColor, backgroundColor;
 @synthesize visulizerView;
+@synthesize inspectorWindow;
 
 - (void)awakeFromNib
 {
@@ -66,6 +68,19 @@
 {
 	backgroundColor = bc;
 	[self.visulizerView setBackgroundColor:backgroundColor.CGColor];
+}
+
+- (IBAction)recenterView:(id)sender
+{
+	[self.visulizerView setTranslation:CGPointMake(0.0, 0.0)];
+}
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+	if ([notification.object isEqualTo:self.inspectorWindow])
+	{
+		[(AppDelegate *)[[NSApplication sharedApplication] delegate] setInspectorShown:NO];
+	}
 }
 
 @end

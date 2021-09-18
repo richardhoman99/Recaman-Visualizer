@@ -12,7 +12,9 @@
 @end
 
 @implementation AppDelegate
+@synthesize inspectorMenuItem;
 @synthesize windowController;
+@synthesize inspectorShown;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -24,6 +26,25 @@
 	}];
 	
 	[self.windowController showWindow:self];
+	[self setInspectorShown:[self.windowController.inspectorWindow isVisible]];
+}
+
+- (IBAction)toggleInspector:(NSMenuItem *)sender
+{
+	if (self.inspectorShown)
+		[self.windowController.inspectorWindow orderOut:sender];
+	else
+		[self.windowController.inspectorWindow orderFront:sender];
+	[self setInspectorShown:!inspectorShown];
+}
+
+- (void)setInspectorShown:(BOOL)shown
+{
+	if (shown)
+		[self.inspectorMenuItem setTitle:@"Hide Inspector"];
+	else
+		[self.inspectorMenuItem setTitle:@"Show Inspector"];
+	inspectorShown = shown;
 }
 
 @end

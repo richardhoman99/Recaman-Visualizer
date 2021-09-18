@@ -10,7 +10,12 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+@property (weak, nonatomic) IBOutlet NSMenuItem *inspectorMenuItem;
+
 @property (strong, nonatomic) WindowController *windowController;
+@property (nonatomic) BOOL inspectorShown;
+
+- (IBAction)toggleInspector:(NSMenuItem *)sender;
 
 @end
 

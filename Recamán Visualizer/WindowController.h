@@ -8,7 +8,7 @@
 #import <Cocoa/Cocoa.h>
 #import "VisualizerView.h"
 
-@interface WindowController : NSWindowController
+@interface WindowController : NSWindowController <NSWindowDelegate>
 {
 	BOOL mouseDownInView;
 }
@@ -18,8 +18,11 @@
 @property (strong, nonatomic) NSColor *lineColor;
 @property (strong, nonatomic) NSColor *backgroundColor;
 
-@property (strong, nonatomic) IBOutlet VisualizerView *visulizerView;
+@property (weak, nonatomic) IBOutlet VisualizerView *visulizerView;
 
+@property (weak, nonatomic) IBOutlet NSPanel *inspectorWindow;
+
+- (IBAction)recenterView:(id)sender;
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
 - (IBAction)zoomNormal:(id)sender;

@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="WindowController">
             <connections>
+                <outlet property="inspectorWindow" destination="tHc-k2-F6q" id="Ptn-m4-FQ3"/>
                 <outlet property="visulizerView" destination="aNc-qd-ot4" id="n9G-BZ-1Da"/>
                 <outlet property="window" destination="Vix-ay-zyc" id="GV2-N6-yCZ"/>
             </connections>
