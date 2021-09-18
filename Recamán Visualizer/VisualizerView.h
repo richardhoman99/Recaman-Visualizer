@@ -22,6 +22,7 @@
 @property (nonatomic) CGFloat lineWidth;
 
 - (void)zoom:(CGFloat)multiplier;
-- (void)setTranslation:(CGPoint)delta;
+- (void)translate:(CGPoint)delta;
+- (void)centerView;
 
 @end

@@ -17,7 +17,7 @@ int max(int, int);
 @property (strong, nonatomic) CAShapeLayer *pathLayer;
 
 - (void)commonInit;
-- (CGPoint)viewCenter;
+- (CGPoint)viewCenterpoint;
 
 @end
 
@@ -56,7 +56,7 @@ int max(int, int);
 	[self.pathLayer setLineWidth:self.lineWidth];
 	[self.pathLayer setStrokeColor:self.lineColor];
 	[self.pathLayer setFillColor:NULL];
-	[self.pathLayer setPosition:[self viewCenter]];
+	[self.pathLayer setPosition:[self viewCenterpoint]];
 	
 	[self setRotation:0.0];
 	[self setZoom:NORMAL_ZOOM];
@@ -83,7 +83,7 @@ int max(int, int);
 - (void)mouseDragged:(NSEvent *)event
 {
 	NSPoint delta = NSMakePoint(-event.deltaX, event.deltaY);
-	[self setTranslation:delta];
+	[self translate:delta];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -149,13 +149,18 @@ int max(int, int);
 	[self.pathLayer setTransform:CATransform3DMakeScale(self.zoom, self.zoom, 1.0)];
 }
 
-- (void)setTranslation:(CGPoint)delta
+- (void)translate:(CGPoint)delta
 {
 	[CATransaction begin];
 	[CATransaction setDisableActions:YES];
 	CGPoint point = CGPointMake(self.pathLayer.position.x-delta.x, self.pathLayer.position.y-delta.y);
 	[self.pathLayer setPosition:point];
 	[CATransaction commit];
+}
+
+- (void)centerView
+{
+	[self.pathLayer setPosition:[self viewCenterpoint]];
 }
 
 - (void)setBackgroundColor:(CGColorRef)bgcolor
@@ -178,7 +183,7 @@ int max(int, int);
 	[self.pathLayer setLineWidth:lineWidth];
 }
 
-- (CGPoint)viewCenter
+- (CGPoint)viewCenterpoint
 {
 	return CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0);
 }

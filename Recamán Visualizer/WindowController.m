@@ -72,7 +72,7 @@
 
 - (IBAction)recenterView:(id)sender
 {
-	[self.visulizerView setTranslation:CGPointMake(0.0, 0.0)];
+	[self.visulizerView centerView];
 }
 
 - (void)windowWillClose:(NSNotification *)notification
