@@ -29,6 +29,11 @@
 	[self setInspectorShown:[self.windowController.inspectorWindow isVisible]];
 }
 
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+{
+	return YES;
+}
+
 - (IBAction)toggleInspector:(NSMenuItem *)sender
 {
 	if (self.inspectorShown)
